@@ -62,6 +62,8 @@ public class DirectoryBrowser {
 		{
 			DirectorySize = DirectorySize + 1;
 						
+			System.out.println(String.format("Node: %1s Directory: %2s.", DirectorySize, path.normalize().toString()));
+			
 			directoryInfo.setFullPath(path.normalize().toString());
 			directoryInfo.setFileSize(Files.size(path));
 			
