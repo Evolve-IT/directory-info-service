@@ -17,6 +17,7 @@ public class DirectoryBrowser {
 	
 	
 	private String _rootDirectory = "";
+	private int DirectorySize;
 	
 	
 	public DirectoryBrowser(String rootDirectory)
@@ -29,6 +30,7 @@ public class DirectoryBrowser {
 		DirectoryListingResult result = new DirectoryListingResult();
 		try
 		{
+			DirectorySize = 0;
 			Path path = Paths.get(_rootDirectory);
 			
 			if ((path == null) || (!Files.exists(path)))
@@ -47,6 +49,8 @@ public class DirectoryBrowser {
 			result.setAsFailed("An unknown error occurred.");
 		}
 		
+		result.setDirectorySize(DirectorySize);
+		
 		return result;
 	}
 	
@@ -56,6 +60,7 @@ public class DirectoryBrowser {
 		
 		try
 		{
+			DirectorySize = DirectorySize + 1;
 			
 			System.out.println(String.format("FullPath = %1s", path.normalize().toString()));
 			

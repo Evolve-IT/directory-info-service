@@ -4,6 +4,8 @@ public class DirectoryListingResult {
 	private boolean Success;
 	private String ErrorMessage;
 	private DirectoryInfo DirectoryInfo;
+	private int DirectorySize;
+	
 	public boolean isSuccess() {
 		return Success;
 	}
@@ -14,6 +16,14 @@ public class DirectoryListingResult {
 
 	public DirectoryInfo getDirectoryInfo() {
 		return DirectoryInfo;
+	}
+	
+	public int getDirectorySize() {
+		return DirectorySize;
+	}
+	
+	public void setDirectorySize(int directorySize) {
+		DirectorySize = directorySize;
 	}
 	
 	public void setAsFailed(String errorMessage)

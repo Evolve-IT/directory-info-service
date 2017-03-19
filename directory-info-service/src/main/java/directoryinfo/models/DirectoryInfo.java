@@ -62,14 +62,10 @@ public class DirectoryInfo {
 	public void addAttribute(String name, Object value)
 	{
 		Attributes.add(new Attribute(name, value));
-		
-		System.out.println("Attributes.add(attribute); called");
 	}
 	
 	public void addChild(DirectoryInfo childToAdd)
 	{
 		Children.add(childToAdd);
-		
-		System.out.println("Children.add(childToAdd); called");
 	}
 }
