@@ -21,21 +21,12 @@ public class DirectoryInfoController {
 	
 	@RequestMapping(value = "/getDirectoryInfo", method = RequestMethod.GET)
 	public DirectoryListingResult getDirectoryInfo(@RequestParam(value = "directory") final String directory)
-	{
-	 	System.out.println("starting servlet (getDirectoryInfo)");
-		
-		/*DirectoryInfo directoryInfo = new DirectoryInfo();		
-		directoryInfo.setDirectory(directory);
-		*/
-		
+	{		
 		DirectoryBrowser directoryBrowser = new DirectoryBrowser(directory);
 		return directoryBrowser.getFullDirectoryListing();
 	}
 	
-	  public DirectoryInfoController(){
+	 public DirectoryInfoController(){
 	        super();
-
-
-
 	}
 }
