@@ -1,16 +1,17 @@
 package directoryinfo.logic;
 
-import java.io.File;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileAttributeView;
-import java.util.List;
+
 
 import directoryinfo.models.DirectoryInfo;
+import directoryinfo.models.DirectoryListingResult;
 
 public class DirectoryBrowser {
 	
@@ -23,33 +24,30 @@ public class DirectoryBrowser {
 		_rootDirectory = rootDirectory;
 	}
 	
-	public DirectoryInfo getFullDirectoryListing()
+	public DirectoryListingResult getFullDirectoryListing()
 	{
-		
+		DirectoryListingResult result = new DirectoryListingResult();
 		try
 		{
 			Path path = Paths.get(_rootDirectory);
 			
-			if (path == null)
+			if ((path == null) || (!Files.exists(path)))
 			{
-				throw new Exception(String.format("Cannot find directory \"%1s\"", _rootDirectory));
+				result.setAsFailed(String.format("Cannot find directory '%1s'", _rootDirectory));
 			}
 			else
 			{
-				System.out.println(String.format("Directory \"%1s\" found.", _rootDirectory));
+				result.assignDirectoryInfo(getDirectoryInfo(path));
 			}
-			
-			return getDirectoryInfo(path);
 		}
 		catch(Exception exception)
 		{
 			System.out.println(String.format("An error occured during getFullDirectoryListing.\r\nException:\r\n%1s", exception.getMessage()));
-			/*TODO: Add error logging here*/
-			
 			exception.printStackTrace();
-			
-			return null;
+			result.setAsFailed("An unknown error occurred.");
 		}
+		
+		return result;
 	}
 	
 	private DirectoryInfo getDirectoryInfo(Path path)
@@ -66,13 +64,7 @@ public class DirectoryBrowser {
 			
 			BasicFileAttributes fileAttributeView = Files.getFileAttributeView(path, BasicFileAttributeView.class).readAttributes();
 			
-			Object a = fileAttributeView.lastAccessTime();
-			
-			
-			
-			directoryInfo.addAttribute("LastAccessTime", a);
-			
-			
+			directoryInfo.addAttribute("LastAccessTime", fileAttributeView.lastAccessTime());
 			directoryInfo.addAttribute("LastModifiedTime", fileAttributeView.lastModifiedTime());
 			directoryInfo.addAttribute("CreationTime", fileAttributeView.creationTime());
 			
@@ -93,13 +85,19 @@ public class DirectoryBrowser {
 	        	directoryInfo.setType("File");
 	        }
 	        
-		}
+		
+		} 
+		catch (NoSuchFileException ex) {
+			directoryInfo.setErrorMessage("File not found.");
+	    }
+		catch (AccessDeniedException e) {
+			directoryInfo.setErrorMessage("Access denied.");
+	    }
 		catch(Exception exception)
 		{
 			System.out.println(String.format("An error occured during getDirectoyInfo.\r\nException:\r\n%1s", exception.getMessage()));
 			exception.printStackTrace();
-			/*TODO: Add logging here */
-			directoryInfo = null;
+			directoryInfo.setErrorMessage("An unknown error occurred.");
 		}
 		
 		return directoryInfo;

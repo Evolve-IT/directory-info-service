@@ -40,7 +40,16 @@ public class DirectoryInfo {
 	private String FullPath;
 	private long FileSize;
 	private String Type;
+	private String ErrorMessage;
 	
+	public String getErrorMessage() {
+		return ErrorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		ErrorMessage = errorMessage;
+	}
+
 	private List<Attribute> Attributes;
 	private List<DirectoryInfo> Children;
 	
