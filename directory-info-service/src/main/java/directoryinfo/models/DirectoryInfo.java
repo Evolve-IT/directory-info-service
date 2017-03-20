@@ -69,6 +69,12 @@ public class DirectoryInfo {
 		addAttribute(CREATION_TIME, creationTime);
 	}
 	
+	public void setErrorMessage(String value)
+	{
+		final String ERROR_MESSAGE = "Error Message";
+		addAttribute(ERROR_MESSAGE, value);
+	}
+	
 	
 	//Public Methods
 	public void addAttribute(String name, Object value)
@@ -79,11 +85,5 @@ public class DirectoryInfo {
 	public void addChild(DirectoryInfo childToAdd)
 	{
 		Children.add(childToAdd);
-	}
-	
-	public void addErrorMessageAttribute(String value)
-	{
-		final String ERROR_MESSAGE = "Error Message";
-		addAttribute(ERROR_MESSAGE, value);
-	}
+	}	
 }

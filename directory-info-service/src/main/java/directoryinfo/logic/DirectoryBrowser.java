@@ -65,8 +65,6 @@ public class DirectoryBrowser {
 	{
 		DirectoryInfo directoryInfo = new DirectoryInfo();
 		
-		
-		
 		try
 		{
 			DirectorySize = DirectorySize + 1;
@@ -91,7 +89,6 @@ public class DirectoryBrowser {
 			}
 			else
 			{
-				directoryInfo.setFileSize(Files.size(path));
 				
 				//If the item is a directory, recursively build up the child items
 				if (Files.isDirectory(path)) {
@@ -108,24 +105,24 @@ public class DirectoryBrowser {
 		        else
 		        {
 		        	directoryInfo.setType(DirectoryInfoType.File);
+		        	directoryInfo.setFileSize(Files.size(path));
 		        }
 			}
 		} 
 		catch (NoSuchFileException ex) {
-			directoryInfo.addErrorMessageAttribute("File not found.");
+			directoryInfo.setErrorMessage("File not found.");
 	    }
 		catch (AccessDeniedException e) {
-			directoryInfo.addErrorMessageAttribute("Access denied.");
+			directoryInfo.setErrorMessage("Access denied.");
 	    }
 		catch (FileSystemException ex) {
-			directoryInfo.addErrorMessageAttribute(ex.getReason());
+			directoryInfo.setErrorMessage(ex.getReason());
 	    }
 		catch(Exception exception)
 		{
 			System.out.println(String.format("An error occured during getDirectoyInfo.\r\nException:\r\n%1s", exception.getMessage()));
 			exception.printStackTrace();
-			//directoryInfo.setErrorMessage("An unknown error occurred.");
-			directoryInfo.addErrorMessageAttribute(String.format("%1s : %2s",exception.toString(), exception.getMessage()));
+			directoryInfo.setErrorMessage("An unknown error occurred.");
 		}
 		
 		return directoryInfo;
