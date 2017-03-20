@@ -65,9 +65,7 @@ public class DirectoryBrowser {
 	{
 		DirectoryInfo directoryInfo = new DirectoryInfo();
 		
-		final String LAST_ACCESSED_TIME = "LastAccessTime";
-		final String LAST_MODIFIED_TIME = "LastModifiedTime";
-		final String CREATION_TIME = "CreationTime";
+		
 		
 		try
 		{
@@ -76,15 +74,14 @@ public class DirectoryBrowser {
 			System.out.println(String.format("Node: %1s Directory: %2s.", DirectorySize, path.normalize().toString()));
 			
 			directoryInfo.setFullPath(path.normalize().toString());
-			directoryInfo.setFileSize(Files.size(path));
 			
 			//Read the attributes without following symbolic links (prevents "too many levels of symbolic links" exception)
 			BasicFileAttributes attributes = Files.getFileAttributeView(path, BasicFileAttributeView.class, LinkOption.NOFOLLOW_LINKS).readAttributes();
 			
 			
-			directoryInfo.addAttribute(LAST_ACCESSED_TIME, attributes.lastAccessTime());
-			directoryInfo.addAttribute(LAST_MODIFIED_TIME, attributes.lastModifiedTime());
-			directoryInfo.addAttribute(CREATION_TIME, attributes.creationTime());
+			directoryInfo.setLastAccessedTime(attributes.lastAccessTime());
+			directoryInfo.setLastModifiedTime(attributes.lastModifiedTime());
+			directoryInfo.setCreationTime(attributes.creationTime());
 			
 		
 			//If it is a symbolic link, don't attempt to get child items as it results in a "too many levels of symbolic links" exception
@@ -94,6 +91,8 @@ public class DirectoryBrowser {
 			}
 			else
 			{
+				directoryInfo.setFileSize(Files.size(path));
+				
 				//If the item is a directory, recursively build up the child items
 				if (Files.isDirectory(path)) {
 					directoryInfo.setType(DirectoryInfoType.Directory);

@@ -1,5 +1,6 @@
 package directoryinfo.models;
 
+import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +9,6 @@ public class DirectoryInfo {
 	
 	//Private Variables
 	private String FullPath;
-	private long FileSize;
 	private String Type;
 	private List<Attribute> Attributes;
 	private List<DirectoryInfo> Children;
@@ -32,14 +32,6 @@ public class DirectoryInfo {
 		FullPath = fullPath;
 	}
 
-	public long getFileSize() {
-		return FileSize;
-	}
-
-	public void setFileSize(long fileSize) {
-		FileSize = fileSize;
-	}
-
 	public String getType() {
 		return Type;
 	}
@@ -55,6 +47,28 @@ public class DirectoryInfo {
 	public List<DirectoryInfo> getChildren() {
 		return Children;
 	}
+	
+	
+	public void setFileSize(long fileSize) {
+		final String FILE_SIZE = "File Size";
+		addAttribute(FILE_SIZE, fileSize);
+	}
+	
+	public void setLastAccessedTime(FileTime lastAccessTime) {
+		final String LAST_ACCESSED_TIME = "LastAccessTime";
+		addAttribute(LAST_ACCESSED_TIME, lastAccessTime);
+	}
+
+	public void setLastModifiedTime(FileTime lastModifiedTime) {
+		final String LAST_MODIFIED_TIME = "LastModifiedTime";
+		addAttribute(LAST_MODIFIED_TIME, lastModifiedTime);
+	}
+
+	public void setCreationTime(FileTime creationTime) {
+		final String CREATION_TIME = "CreationTime";
+		addAttribute(CREATION_TIME, creationTime);
+	}
+	
 	
 	//Public Methods
 	public void addAttribute(String name, Object value)
