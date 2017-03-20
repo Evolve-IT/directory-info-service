@@ -5,6 +5,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class DirectoryInfo {
+	
+	//Private Variables
+	private String FullPath;
+	private long FileSize;
+	private String Type;
+	private String ErrorMessage;
+	private List<Attribute> Attributes;
+	private List<DirectoryInfo> Children;
+	
+	
+	//Constructors
+	public DirectoryInfo()
+	{
+		Attributes = new ArrayList<Attribute>();
+		Children = new ArrayList<DirectoryInfo>();
+	}
+	
+	
+	//Public Getters and Setters
 	public String getFullPath() {
 		return FullPath;
 	}
@@ -37,28 +56,16 @@ public class DirectoryInfo {
 		return Children;
 	}
 	
-	private String FullPath;
-	private long FileSize;
-	private String Type;
-	private String ErrorMessage;
-	
 	public String getErrorMessage() {
 		return ErrorMessage;
 	}
-
+	
 	public void setErrorMessage(String errorMessage) {
 		ErrorMessage = errorMessage;
 	}
-
-	private List<Attribute> Attributes;
-	private List<DirectoryInfo> Children;
 	
-	public DirectoryInfo()
-	{
-		Attributes = new ArrayList<Attribute>();
-		Children = new ArrayList<DirectoryInfo>();
-	}
 	
+	//Public Methods
 	public void addAttribute(String name, Object value)
 	{
 		Attributes.add(new Attribute(name, value));
