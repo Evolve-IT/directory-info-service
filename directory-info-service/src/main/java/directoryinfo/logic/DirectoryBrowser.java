@@ -2,6 +2,7 @@ package directoryinfo.logic;
 
 import java.nio.file.AccessDeniedException;
 import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.NoSuchFileException;
@@ -79,10 +80,6 @@ public class DirectoryBrowser {
 			//Read the attributes without following symbolic links (prevents "too many levels of symbolic links" exception)
 			BasicFileAttributes attributes = Files.getFileAttributeView(path, BasicFileAttributeView.class, LinkOption.NOFOLLOW_LINKS).readAttributes();
 			
-			directoryInfo.addAttribute("LastAccessTime", attributes.lastAccessTime());
-			directoryInfo.addAttribute("LastModifiedTime", attributes.lastModifiedTime());
-			directoryInfo.addAttribute("CreationTime", attributes.creationTime());
-			
 		
 			//If it is a symbolic link, don't attempt to get child items as it results in a "too many levels of symbolic links" exception
 			if (attributes.isSymbolicLink())
@@ -107,6 +104,10 @@ public class DirectoryBrowser {
 		        {
 		        	directoryInfo.setType(FILE);
 		        }
+				
+				directoryInfo.addAttribute("LastAccessTime", attributes.lastAccessTime());
+				directoryInfo.addAttribute("LastModifiedTime", attributes.lastModifiedTime());
+				directoryInfo.addAttribute("CreationTime", attributes.creationTime());
 			}
 		} 
 		catch (NoSuchFileException ex) {
@@ -115,11 +116,15 @@ public class DirectoryBrowser {
 		catch (AccessDeniedException e) {
 			directoryInfo.setErrorMessage("Access denied.");
 	    }
+		catch (FileSystemException ex) {
+			directoryInfo.setErrorMessage(ex.getReason());
+	    }
 		catch(Exception exception)
 		{
 			System.out.println(String.format("An error occured during getDirectoyInfo.\r\nException:\r\n%1s", exception.getMessage()));
 			exception.printStackTrace();
-			directoryInfo.setErrorMessage("An unknown error occurred.");
+			//directoryInfo.setErrorMessage("An unknown error occurred.");
+			directoryInfo.setErrorMessage(String.format("%1s : %2s",exception.toString(), exception.getMessage()));
 		}
 		
 		return directoryInfo;
