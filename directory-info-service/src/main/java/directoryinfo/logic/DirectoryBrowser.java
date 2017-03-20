@@ -13,6 +13,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.PosixFileAttributes;
 
 import directoryinfo.models.DirectoryInfo;
+import directoryinfo.models.DirectoryInfoType;
 import directoryinfo.models.DirectoryListingResult;
 
 public class DirectoryBrowser {
@@ -64,9 +65,9 @@ public class DirectoryBrowser {
 	{
 		DirectoryInfo directoryInfo = new DirectoryInfo();
 		
-		final String DIRECTORY = "Directory";
-		final String FILE = "Folder";
-		final String SYMBOLIC_LINK = "Symbolic Link";
+		final String LAST_ACCESSED_TIME = "LastAccessTime";
+		final String LAST_MODIFIED_TIME = "LastModifiedTime";
+		final String CREATION_TIME = "CreationTime";
 		
 		try
 		{
@@ -80,17 +81,22 @@ public class DirectoryBrowser {
 			//Read the attributes without following symbolic links (prevents "too many levels of symbolic links" exception)
 			BasicFileAttributes attributes = Files.getFileAttributeView(path, BasicFileAttributeView.class, LinkOption.NOFOLLOW_LINKS).readAttributes();
 			
+			
+			directoryInfo.addAttribute(LAST_ACCESSED_TIME, attributes.lastAccessTime());
+			directoryInfo.addAttribute(LAST_MODIFIED_TIME, attributes.lastModifiedTime());
+			directoryInfo.addAttribute(CREATION_TIME, attributes.creationTime());
+			
 		
 			//If it is a symbolic link, don't attempt to get child items as it results in a "too many levels of symbolic links" exception
 			if (attributes.isSymbolicLink())
 			{
-				directoryInfo.setType(SYMBOLIC_LINK);
+				directoryInfo.setType(DirectoryInfoType.SymbolicLink);
 			}
 			else
 			{
 				//If the item is a directory, recursively build up the child items
 				if (Files.isDirectory(path)) {
-					directoryInfo.setType(DIRECTORY);
+					directoryInfo.setType(DirectoryInfoType.Directory);
 					
 					DirectoryStream<Path> stream = Files.newDirectoryStream(path);
 					
@@ -102,29 +108,25 @@ public class DirectoryBrowser {
 		        }
 		        else
 		        {
-		        	directoryInfo.setType(FILE);
+		        	directoryInfo.setType(DirectoryInfoType.File);
 		        }
-				
-				directoryInfo.addAttribute("LastAccessTime", attributes.lastAccessTime());
-				directoryInfo.addAttribute("LastModifiedTime", attributes.lastModifiedTime());
-				directoryInfo.addAttribute("CreationTime", attributes.creationTime());
 			}
 		} 
 		catch (NoSuchFileException ex) {
-			directoryInfo.setErrorMessage("File not found.");
+			directoryInfo.addErrorMessageAttribute("File not found.");
 	    }
 		catch (AccessDeniedException e) {
-			directoryInfo.setErrorMessage("Access denied.");
+			directoryInfo.addErrorMessageAttribute("Access denied.");
 	    }
 		catch (FileSystemException ex) {
-			directoryInfo.setErrorMessage(ex.getReason());
+			directoryInfo.addErrorMessageAttribute(ex.getReason());
 	    }
 		catch(Exception exception)
 		{
 			System.out.println(String.format("An error occured during getDirectoyInfo.\r\nException:\r\n%1s", exception.getMessage()));
 			exception.printStackTrace();
 			//directoryInfo.setErrorMessage("An unknown error occurred.");
-			directoryInfo.setErrorMessage(String.format("%1s : %2s",exception.toString(), exception.getMessage()));
+			directoryInfo.addErrorMessageAttribute(String.format("%1s : %2s",exception.toString(), exception.getMessage()));
 		}
 		
 		return directoryInfo;

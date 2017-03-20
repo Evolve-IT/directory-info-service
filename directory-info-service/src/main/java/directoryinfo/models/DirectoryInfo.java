@@ -10,7 +10,6 @@ public class DirectoryInfo {
 	private String FullPath;
 	private long FileSize;
 	private String Type;
-	private String ErrorMessage;
 	private List<Attribute> Attributes;
 	private List<DirectoryInfo> Children;
 	
@@ -20,6 +19,7 @@ public class DirectoryInfo {
 	{
 		Attributes = new ArrayList<Attribute>();
 		Children = new ArrayList<DirectoryInfo>();
+		setType(DirectoryInfoType.Unknown);
 	}
 	
 	
@@ -44,8 +44,8 @@ public class DirectoryInfo {
 		return Type;
 	}
 
-	public void setType(String type) {
-		Type = type;
+	public void setType(DirectoryInfoType type) {
+		Type = type.toString();
 	}
 
 	public List<Attribute> getAttributes() {
@@ -56,15 +56,6 @@ public class DirectoryInfo {
 		return Children;
 	}
 	
-	public String getErrorMessage() {
-		return ErrorMessage;
-	}
-	
-	public void setErrorMessage(String errorMessage) {
-		ErrorMessage = errorMessage;
-	}
-	
-	
 	//Public Methods
 	public void addAttribute(String name, Object value)
 	{
@@ -74,5 +65,11 @@ public class DirectoryInfo {
 	public void addChild(DirectoryInfo childToAdd)
 	{
 		Children.add(childToAdd);
+	}
+	
+	public void addErrorMessageAttribute(String value)
+	{
+		final String ERROR_MESSAGE = "Error Message";
+		addAttribute(ERROR_MESSAGE, value);
 	}
 }
