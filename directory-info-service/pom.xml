@@ -19,6 +19,24 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+	<repositories>
+	<repository>
+	  <id>central</id>
+	  <url>http://repo.dev.bloomberg.com/content/groups/public</url>
+	  <releases>
+	    <enabled>false</enabled>
+	  </releases>
+	</repository>
+	</repositories>
+	
+	<pluginRepositories>
+    <pluginRepository>
+        <id>central</id>
+        <url>http://repo.dev.bloomberg.com/content/groups/public</url>
+        <releases><enabled>false</enabled></releases>
+    </pluginRepository>
+    </pluginRepositories>
+
   <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
