@@ -26,14 +26,7 @@
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
-  
-  <repositories>
- 	<repository>
-      <id>central</id>
-      <url>http://central.maven.org/maven2/</url>
-   	</repository>
-  </repositories>
-  
+   
   <build>
   	<plugins>
   		<plugin>
