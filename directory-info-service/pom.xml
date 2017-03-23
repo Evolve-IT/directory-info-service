@@ -6,7 +6,8 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.2.RELEASE</version>
-    <relativePath>./spring-boot-starter-parent/1.5.2.RELEASE/spring-boot-starter-parent-1.5.2.RELEASE.pom</relativePath>
+    <relativePath/>
+    <!-- <relativePath>./spring-boot-starter-parent/1.5.2.RELEASE/spring-boot-starter-parent-1.5.2.RELEASE.pom</relativePath>  -->
 	</parent>
 
   <groupId>com.gjdeswardt.directoryinfoservice</groupId>
@@ -26,6 +27,14 @@
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
+  
+  	<repositories>
+        <repository>
+            <id>spring-libs-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>http://repo.spring.io/libs-snapshot</url>
+        </repository>
+	</repositories>
    
   <build>
   	<plugins>
