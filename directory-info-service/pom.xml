@@ -20,36 +20,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-	<repositories>
-	<repository>
-	  <id>central</id>
-	  <url>http://repo.dev.bloomberg.com/content/groups/public</url>
-	  <releases>
-	    <enabled>false</enabled>
-	  </releases>
-	</repository>
-	</repositories>
-	
-	<pluginRepositories>
-    <pluginRepository>
-        <id>central</id>
-        <url>http://repo.dev.bloomberg.com/content/groups/public</url>
-        <releases><enabled>false</enabled></releases>
-    </pluginRepository>
-    </pluginRepositories>
-
   <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
+        <!-- Import dependency management from Spring Boot -->
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-        <scope>import</scope>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>1.1.5.RELEASE</version>
         <type>pom</type>
-    </dependency>   
+        <scope>import</scope>
+      </dependency>
   </dependencies>
    
   <build>
