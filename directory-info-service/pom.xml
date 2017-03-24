@@ -28,33 +28,15 @@
     </dependency>
   </dependencies>
   
-  	<repositories>
-        <repository>
-            <id>spring-libs-snapshot</id>
-            <name>Spring Snapshot Repository</name>
-            <url>http://repo.spring.io/libs-snapshot</url>
-        </repository>
-        <repository>
-	        <id>repo.springsource.org.milestone</id>
-	        <name>Spring Framework Maven Milestone Repository</name>
-	        <url>https://repo.springsource.org/milestone</url>
-	    </repository>
-	    <repository> <!-- this one added -->
-	        <id>repository.springframework.maven.release</id>
-	        <name>Spring Framework Maven Release Repository</name>
-	        <url>http://maven.springframework.org/release</url>
-	    </repository>
-	        
-	</repositories>
-   
   <build>
+  
   	<plugins>
-  		<!-- 
-  		<plugin>
+  		
+  	   <plugin>
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-maven-plugin</artifactId>
 	    </plugin>
-	     -->
+	
 	    <plugin>
 	      <!-- Build an executable JAR -->
 	      <groupId>org.apache.maven.plugins</groupId>
