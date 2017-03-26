@@ -115,39 +115,38 @@ Follow these steps in order to call the REST service:
 	    1. directoryInfo
 	       1. This object contains all of the details related to the directory which was passed in as the directory input parameter.
 	       2. It contains the following fields
-	          1. type
-		     * There are 5 types 
-		        * "Directory" - A folder or directory
-		        * "File" - A regular file
-			* "Other" - It is not a regular file, symbolic link or directory
-			* "SymbolicLink" - A Symbolic Link
-			* "Unknown" - If an exception occurs during the gathering of attribute information due to permissions or other security exceptions
-		  2. fullPath
-	             * The full path of the directory
-		  3. attributes
-		     1. This is a collection of objects of type attribute which represents the attributes of the file or directory with the following fields
-		        1. name
-			   * The name of the attribute
-			2. value
-			   * The value of the attribute
-	             2. An attribute with name "ErrorMessage" will be added to a directoryInfo object's attributes if an exception occurred during the accessing of a file or directory's attributes.
-	             3. Possible attributes:
-	                1. FileSize
-			2. LastAccessTime
-			3. LastModifiedTime
-			4. CreationTime
-		   4. children
-	              * This is a collection of objects of type directoryInfo (same as described above) which represents all of the child files and directories. 
-		      * This will only be populated if the current item is a directory.
-	    2. directorySize
-	       * This is the size of the directory listing. It is an interger which represents the number of files and folders contained in the input folder.
+                  1. type
+                     1. There are 5 types 
+                        1. "Directory" - A folder or directory
+                        2. "File" - A regular file
+                        3. "Other" - It is not a regular file, symbolic link or directory
+                        4. "SymbolicLink" - A Symbolic Link
+                        5. "Unknown" - If an exception occurs during the gathering of attribute information due to permissions or other security exceptions
+                  2. fullPath
+                     * The full path of the directory
+                  3. attributes
+                     1. This is a collection of objects of type attribute which represents the attributes of the file or directory with the following fields
+                        1. name
+                           * The name of the attribute
+                        2. value
+                           * The value of the attribute
+                     2. An attribute with name "ErrorMessage" will be added to a directoryInfo object's attributes if an exception occurred during the accessing of a file or directory's attributes.
+                     3. Possible attributes:
+                        1. FileSize
+                        2. LastAccessTime
+                        3. LastModifiedTime
+                        4. CreationTime
+                  4. children
+                     * This is a collection of objects of type directoryInfo (same as described above) which represents all of the child files and directories. 
+                     * This will only be populated if the current item is a directory.
+            2. directorySize
+               * This is the size of the directory listing. It is an interger which represents the number of files and folders contained in the input folder.
             3. success
-	       * This is a boolean field which will be:
-	          * "true" if a directory listing could be retrieved without any errors.
-	          * "false" if an exception occurred during the retrieval of a directory listing.
-	    4. errorMessage
-	       * This will be populated with a user friendly error message if an exception occurred during the retrieval of a directory listing.
-	
+               * This is a boolean field which will be:
+                  * "true" if a directory listing could be retrieved without any errors.
+                  * "false" if an exception occurred during the retrieval of a directory listing.
+            4. errorMessage
+               * This will be populated with a user friendly error message if an exception occurred during the retrieval of a directory listing.
    4. Example of Xml returned by the REST Service
 		<DirectoryListingResult>
 			<directoryInfo>n
