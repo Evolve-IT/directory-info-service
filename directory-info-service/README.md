@@ -17,8 +17,8 @@ Building and Installing on Centos/Linux
      * $ cd /opt/java
      * $ wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz
    4. Once file has been downloaded, you may extract the tarball using tar command as shown below:
-     1. $ tar -zxvf jdk-8u45-linux-i586.tar.gz		[For 32-bit Systems]
-     2. $ tar -zxvf jdk-8u45-linux-x64.tar.gz		[For 64-bit Systems]
+      1. $ tar -zxvf jdk-8u45-linux-i586.tar.gz		[For 32-bit Systems]
+      2. $ tar -zxvf jdk-8u45-linux-x64.tar.gz		[For 64-bit Systems]
  d. Next, move to the extracted directory and use command update-alternatives to tell system where java and its executables are installed.
   i. $ cd jdk1.8.0_45/
   ii. $ update-alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_45/bin/java 100  
