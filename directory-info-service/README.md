@@ -112,9 +112,9 @@ Follow these steps in order to call the REST service:
    3. The data returned by both methods will be in the following format
       1. DirectoryListingResult
          1. This is the header object which contains the following fields
-	    1. directoryInfo
-	       1. This object contains all of the details related to the directory which was passed in as the directory input parameter.
-	       2. It contains the following fields
+            1. directoryInfo
+               1. This object contains all of the details related to the directory which was passed in as the directory input parameter.
+               2. It contains the following fields
                   1. type
                      1. There are 5 types 
                         1. "Directory" - A folder or directory
