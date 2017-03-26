@@ -7,12 +7,12 @@ The REST service can be used to get a directory listing of a directory on the se
 
 Building and Installing on Centos/Linux
 1. Enable wget if not enable/installed
- a. yum install wget -y
+  1. yum install wget -y
 2. Install JDK 1.8 (This should only be done if Maven/mvn cannot run because JDK 1.8 is missing)
- a. mkdir /opt/java && cd /opt/java
- b. For 32-bit Systems
-  i. $ cd /opt/java
-  ii. # wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-i586.tar.gz"
+  1. mkdir /opt/java && cd /opt/java
+  2. For 32-bit Systems
+    * $ cd /opt/java
+    * # wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-i586.tar.gz"
  c. For 64-bit Systems
   i. # cd /opt/java
   ii. # wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz
