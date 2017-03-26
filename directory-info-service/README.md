@@ -148,6 +148,8 @@ Follow these steps in order to call the REST service:
             4. errorMessage
                * This will be populated with a user friendly error message if an exception occurred during the retrieval of a directory listing.
    4. Example of Xml returned by the REST Service
+
+{::nomarkdown}
 		<DirectoryListingResult>
 			<directoryInfo>n
 				<type>Directory</type>
@@ -224,7 +226,7 @@ Follow these steps in order to call the REST service:
 			<success>true</success>
 			<errorMessage/>
 		</DirectoryListingResult>
-
+{:/}
 
 
 ## Contributing
