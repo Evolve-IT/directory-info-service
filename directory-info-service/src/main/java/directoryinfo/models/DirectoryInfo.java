@@ -79,7 +79,7 @@ public class DirectoryInfo {
 	
 	public void setErrorMessage(String value)
 	{
-		final String ERROR_MESSAGE = "Error Message";
+		final String ERROR_MESSAGE = "ErrorMessage";
 		addAttribute(ERROR_MESSAGE, value);
 	}
 	

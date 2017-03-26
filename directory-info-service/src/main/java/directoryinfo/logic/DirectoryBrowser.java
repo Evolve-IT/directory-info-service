@@ -102,6 +102,11 @@ public class DirectoryBrowser {
 			            directoryInfo.addChild(child);
 			        }
 		        }
+		        else if (attributes.isOther())
+		        {
+		        	directoryInfo.setType(DirectoryInfoType.Other);
+		        	directoryInfo.setFileSize(Files.size(path));
+		        }
 		        else
 		        {
 		        	directoryInfo.setType(DirectoryInfoType.File);

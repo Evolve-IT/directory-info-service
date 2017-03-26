@@ -59,9 +59,9 @@ Building and Installing on Centos/Linux:
 		i.	# cd /sourcecode
 	d.	Get the source code from git:
 		i.	The first time (Clone):
-			1.	# git clone https://github.com/Evolve-IT/directory-info-service.git
+			# git clone https://github.com/Evolve-IT/directory-info-service.git
 		ii.	If it has already been cloned (For updates from git), do a pull:
-			1.	# git pull https://github.com/Evolve-IT/directory-info-service.git  master
+			# git pull https://github.com/Evolve-IT/directory-info-service.git  master
 6.	Build the project using Maven:
 	a.	go to the directory-info-service folder:
 		i.	# cd /sourcecode/directory-info-service/directory-info-service
@@ -110,6 +110,124 @@ Follow these steps in order to call the REST service:
 			Example: # curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp > /tmp/directory_info_service_output.xml
 		iii.	You should see the xml returned by the rest service
 	c.	The data returned by both methods will be in the following format:
+		i. 	DirectoryListingResult:
+			This is the header object which contains the following properties:
+				1. 	directoryInfo
+					i. This object contains all of the details related to the directory which was passed in as the directory input parameter.
+					ii. It contains the following fields:
+						1. 	type
+							There are 4 types: 
+							"Directory" -> A folder/directory
+							"File" -> A regular file
+							"Other" -> It is not a regular file, symbolic link or directory
+							"SymbolicLink" -> A Symbolic Link
+							"Unknown" -> If an exception occurs during the gathering of attribute information due to permissions or other security exceptions
+						2. 	fullPath
+							The full path of the directory
+						3.	attributes
+							This is a collection of objects of type attribute which represents the attributes of the file or directory with the following fields:
+								i.	name
+									The name of the attribute
+								ii.	value
+									The value of the attribute
+							** An attribute with name "ErrorMessage" will be added to a directoryInfo object's attributes if an exception occurred during the accessing
+							   of a file or directory's attributes.
+							Possible attributes:
+								i. 	
+								ii.	
+								iii.
+								iv.	
+								V.	
+
+						4.	children
+							This is a collection of objects of type directoryInfo (same as described above) which represents all of the child
+							files and directories. 
+							** This will only be populated if the current item is a directory.
+				2. 	directorySize
+					This is the size of the directory listing.
+				3. 	success
+					This is a boolean field which will be:
+						"true" if a directory listing could be retrieved without any errors.
+						"false" if an exception occurred during the retrieval of a directory listing.
+				4. 	errorMessage
+					This will be populated with a user friendly error message if an exception occurred during the retrieval of a directory listing.
+		
+		<DirectoryListingResult>
+			<directoryInfo>n
+				<type>Directory</type>
+				<fullPath>C:\DirectoryInfo</fullPath>
+				<attributes>
+					<attribute>
+						<name>LastAccessTime</name><value>2017-03-26T14:25:40.493221Z</value>
+					</attribute>
+					<attribute>
+						<name>LastModifiedTime</name><value>2017-03-26T14:25:40.493221Z</value>
+					</attribute>
+					<attribute>
+						<name>CreationTime</name><value>2017-03-26T14:24:04.736269Z</value>
+					</attribute>
+					</attributes>
+				<children>
+					<directoryInfo>
+						<type>File</type>
+						<fullPath>C:\DirectoryInfo\Test File 1.txt</fullPath>
+						<attributes>
+							<attribute>
+								<name>LastAccessTime</name><value>2017-03-26T14:24:27.136322Z</value>
+							</attribute>
+							<attribute>
+								<name>LastModifiedTime</name><value>2017-03-26T14:25:11.43494Z</value>
+							</attribute>
+							<attribute>
+								<name>CreationTime</name><value>2017-03-26T14:24:27.136322Z</value>
+							</attribute>
+							<attribute>
+								<name>FileSize</name><value>404640</value>
+							</attribute>
+							</attributes>
+							<children/>
+					</directoryInfo>
+					<directoryInfo>
+						<type>File</type>
+						<fullPath>C:\DirectoryInfo\Test File 2.txt</fullPath>
+						<attributes>
+							<attribute>
+								<name>LastAccessTime</name><value>2017-03-26T14:25:17.564302Z</value>
+							</attribute>
+							<attribute>
+								<name>LastModifiedTime</name><value>2017-03-26T14:25:56.008242Z</value>
+							</attribute>
+							<attribute>
+								<name>CreationTime</name><value>2017-03-26T14:25:17.564302Z</value>
+							</attribute>
+							<attribute>
+								<name>FileSize</name><value>183774</value>
+							</attribute>
+						</attributes>
+						<children/>
+					</directoryInfo>
+					<directoryInfo>
+						<type>Directory</type>
+						<fullPath>C:\DirectoryInfo\Test Folder 1</fullPath>
+						<attributes>
+							<attribute>
+								<name>LastAccessTime</name><value>2017-03-26T14:25:33.999219Z</value>
+							</attribute>
+							<attribute>
+								<name>LastModifiedTime</name><value>2017-03-26T14:25:33.999219Z</value>
+							</attribute>
+							<attribute>
+								<name>CreationTime</name><value>2017-03-26T14:25:33.999219Z</value>
+							</attribute>
+						</attributes>
+						<children/>
+					</directoryInfo>
+				</children>
+			</directoryInfo>
+			<directorySize>4</directorySize>
+			<success>true</success>
+			<errorMessage/>
+		</DirectoryListingResult>
 
 
 

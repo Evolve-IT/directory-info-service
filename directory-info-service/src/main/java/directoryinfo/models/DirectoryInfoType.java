@@ -5,4 +5,5 @@ public enum DirectoryInfoType {
 	File,
 	SymbolicLink,
 	Unknown,
+	Other,
 }
