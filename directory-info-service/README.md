@@ -7,7 +7,7 @@ The REST service can be used to get a directory listing of a directory on the se
 
 Building and Installing on Centos/Linux
 1. Enable wget if not enable/installed
-  1. yum install wget -y
+   1. yum install wget -y
 2. Install JDK 1.8 (This should only be done if Maven/mvn cannot run because JDK 1.8 is missing)
   1. mkdir /opt/java && cd /opt/java
   2. For 32-bit Systems
@@ -34,14 +34,14 @@ Building and Installing on Centos/Linux
   ii. # export JRE_HOME=/opt/java/jdk1.8.0_45/jre 	
   iii. # export PATH=$PATH:/opt/java/jdk1.8.0_45/bin:/opt/java/jdk1.8.0_45/jre/bin
  h. Now You may verify the Java version again, to confirm.
-  i. # java –version
+  i. # java ï¿½version
 3. Install Apache Maven:
  a. You can add maven to the yum libraries like this:
   i. # wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
  b. Now you can install maven like this:
   i. # yum install apache-maven
  c. Check version:
-  i. # mvn –version
+  i. # mvn ï¿½version
 4. Install Docker:
  a. Update the package database:
   i. # sudo yum check-update
@@ -78,7 +78,7 @@ Building and Installing on Centos/Linux
   ii. You should see the directoryinfoservice image in the list if it was successfully built
  c. Run: docker run -p <publish exposed port> -i -t <dockerimage>
   i. Thus Run: # docker run -p 8080:8080 -i -t directoryinfoservice
-  ii. This will run the docker image and expose port 8080 on the docker image as port 8080 to the “outside world”
+  ii. This will run the docker image and expose port 8080 on the docker image as port 8080 to the ï¿½outside worldï¿½
  d. Press Ctrl + P + Ctrl + Q (to allow you to type and see the input if it is still attached to the docker container)
 
 
@@ -91,8 +91,8 @@ Follow these steps in order to call the REST service:
 		i.	This will show a list of docker containers
 		ii.	Use the CONTAINER_ID which is displayed of the directoryinfoservice to get the ip address below.
 	b.	# docker inspect --format '{{ .NetworkSettings.IPAddress }}' CONTAINER_ID
-		i.	This should display the docker container’s IP Address
-		ii.	If this doesn’t work, use one of the commands on this page: http://networkstatic.net/10-examples-of-how-to-get-docker-container-ip-address/
+		i.	This should display the docker containerï¿½s IP Address
+		ii.	If this doesnï¿½t work, use one of the commands on this page: http://networkstatic.net/10-examples-of-how-to-get-docker-container-ip-address/
 2.	If Curl is not enabled, enable it:
 	a.	# yum install curl
 3.	Send a request to the directoryinfoservice:
