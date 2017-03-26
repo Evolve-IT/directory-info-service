@@ -1,6 +1,7 @@
 package directoryinfo.controllers;
 
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,15 @@ public class DirectoryInfoController {
 	    System.out.println("Static init DirectoryInfoController");
 	}
 	
-	@RequestMapping(value = "/getDirectoryInfo", method = RequestMethod.GET)
-	public DirectoryListingResult getDirectoryInfo(@RequestParam(value = "directory") final String directory)
+	@RequestMapping(value = "/getDirectoryInfoJson", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public DirectoryListingResult getDirectoryInfoJson(@RequestParam(value = "directory") final String directory)
+	{		
+		DirectoryBrowser directoryBrowser = new DirectoryBrowser(directory);
+		return directoryBrowser.getFullDirectoryListing();
+	}
+	
+	@RequestMapping(value = "/getDirectoryInfoXml", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE, consumes = MediaType.ALL_VALUE)
+	public DirectoryListingResult getDirectoryInfoXml(@RequestParam(value = "directory") final String directory)
 	{		
 		DirectoryBrowser directoryBrowser = new DirectoryBrowser(directory);
 		return directoryBrowser.getFullDirectoryListing();

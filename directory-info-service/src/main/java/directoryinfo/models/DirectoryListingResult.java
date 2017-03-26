@@ -1,5 +1,8 @@
 package directoryinfo.models;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class DirectoryListingResult {
 	private boolean Success;
 	private String ErrorMessage;
