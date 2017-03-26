@@ -114,14 +114,14 @@ Follow these steps in order to call the REST service:
          1. This is the header object which contains the following fields
 	    1. directoryInfo
 	       1. This object contains all of the details related to the directory which was passed in as the directory input parameter.
-	       2. It contains the following fields:
+	       2. It contains the following fields
 	          1. type
-		     1. There are 5 types 
-		        1. "Directory" -> A folder or directory
-		        2. "File" -> A regular file
-			3. "Other" -> It is not a regular file, symbolic link or directory
-			4. "SymbolicLink" -> A Symbolic Link
-			5. "Unknown" -> If an exception occurs during the gathering of attribute information due to permissions or other security exceptions
+		     * There are 5 types 
+		        * "Directory" - A folder or directory
+		        * "File" - A regular file
+			* "Other" - It is not a regular file, symbolic link or directory
+			* "SymbolicLink" - A Symbolic Link
+			* "Unknown" - If an exception occurs during the gathering of attribute information due to permissions or other security exceptions
 		  2. fullPath
 	             * The full path of the directory
 		  3. attributes
