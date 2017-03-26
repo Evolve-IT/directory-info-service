@@ -70,13 +70,13 @@ Building and Installing on Centos/Linux
    3. Run: $ mvn install
       1. This installs the dependencies for the project, builds the project and creates the directory-info-service.jar file which contains all of the source code and references.
 7. Build and run the docker image:
-   1. Run: docker build -f <Dockerfile name> -t <Docker image name (has to be lowercase)> . (notice the space dot at the end)
+   1. Run: docker build -f [Dockerfile name] -t [Docker image name (has to be lowercase)] . (notice the space dot at the end)
       1. Thus run: $ docker build -f Dockerfile -t directoryinfoservice .
       2. This builds the docker image
    2. Run: $ docker images
       1. Gets a list of docker images
       2. You should see the directoryinfoservice image in the list if it was successfully built
-   3. Run: docker run -p <publish exposed port> -i -t <dockerimage>
+   3. Run: docker run -p [publish exposed port] -i -t [dockerimage]
       1. Thus Run: $ docker run -p 8080:8080 -i -t directoryinfoservice
       2. This will run the docker image and expose port 8080 on the docker image as port 8080 to the "outside world"
    4. Press Ctrl + P + Ctrl + Q (to allow you to type and see the input if it is still attached to the docker container)
@@ -97,16 +97,16 @@ Follow these steps in order to call the REST service:
    1. $ yum install curl
 3. Send a request to the directoryinfoservice:
    1. For Json Output:
-      1. $ curl -X GET http://<Docker Image IP Address>:<Docker Image Port>/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=<directory>
+      1. $ curl -X GET http://[Docker Image IP Address]:[Docker Image Port]/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=[directory]
          * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp
-      2. You can add > <somedirectory>/<output filename> to the end of the curl command to write the output to a file
+      2. You can add > [somedirectory]/[output filename] to the end of the curl command to write the output to a file
          * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp > /tmp/directory_info_service_output_json.txt
       3. You should see the json returned by the rest service
       4. An object with the following structure will be returned
    2. For Xml Output:
-      1. $ curl -X GET http://<Docker Image IP Address>:<Docker Image Port>/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=<directory>
+      1. $ curl -X GET http://[Docker Image IP Address]:[Docker Image Port]/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=[directory]
          * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp 
-      2. You can add > <somedirectory>/<output filename> to the end of the curl command to write the output to a file
+      2. You can add > [somedirectory]/[output filename] to the end of the curl command to write the output to a file
          * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp > /tmp/directory_info_service_output.xml
       3. You should see the xml returned by the rest service
    3. The data returned by both methods will be in the following format:
