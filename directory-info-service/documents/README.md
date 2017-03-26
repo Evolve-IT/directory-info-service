@@ -5,17 +5,17 @@ The REST service can be used to get a directory listing of a directory on the se
 
 ## Installation
 
-Building and Installing on Linux:
+Building and Installing on Centos/Linux:
 1.	Enable wget if not enable/installed:
-	a.	yum install wget -y
+	a.	# yum install wget -y
 2.	Install JDK 1.8 (This should only be done if Maven/mvn cannot run because JDK 1.8 is missing):
-	a.	mkdir /opt/java && cd /opt/java
+	a.	# mkdir /opt/java && cd /opt/java
 	b.	For 32-bit Systems
-		i.	cd /opt/java
-		ii.	wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-i586.tar.gz"
+		i.	# cd /opt/java
+		ii.	# wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-i586.tar.gz"
 	c.	For 64-bit Systems
-		i.	cd /opt/java
-		ii.	wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz
+		i.	# cd /opt/java
+		ii.	# wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz
 		iii.	Once file has been downloaded, you may extract the tarball using tar command as shown below:
 			1.	# tar -zxvf jdk-8u45-linux-i586.tar.gz		[For 32-bit Systems]
 			2.	# tar -zxvf jdk-8u45-linux-x64.tar.gz		[For 64-bit Systems]
@@ -37,55 +37,49 @@ Building and Installing on Linux:
 	i.	# java –version
 3.	Install Apache Maven:
 	a.	You can add maven to the yum libraries like this:
-		i.	wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+		i.	# wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
 	b.	Now you can install maven like this:
-		i.	yum install apache-maven
+		i.	# yum install apache-maven
 	c.	Check version:
-		i.	mvn –version
+		i.	# mvn –version
 4.	Install Docker:
 	a.	Update the package database:
-		i.	sudo yum check-update
+		i.	# sudo yum check-update
 	b.	Add the official Docker repository, download the latest version of Docker, and install it:
-		i.	curl -fsSL https://get.docker.com/ | sh
-	c.	Start the docker service:
-		i.	sudo service docker start
-	d.	After installation has completed, start the Docker daemon:
-		i.	sudo systemctl start docker
-	e.	Verify that it's running:
-		i.	sudo systemctl status docker
-	f.	Lastly, make sure it starts at every server reboot:
-		i.	sudo systemctl enable docker
-5.	Copy the source code to the centos machine:
+		i.	# curl -fsSL https://get.docker.com/ | sh
+	c.	After installation has completed, tart the docker service:
+		i.	# sudo service docker start
+5.	Copy the source code to the server:
 	a.	Install Git:
-		i.	sudo yum install git
-	b.	create a folder for the source code:
-		i.	cd ~
-		ii.	mkdir /sourcecode
-	c.	go the the sourcecode directory:
-		i.	cd /sourcecode
-	d.	get the source code from git:
+		i.	# sudo yum install git
+	b.	Create a folder for the source code:
+		i.	# cd ~
+		ii.	# mkdir /sourcecode
+	c.	Go the the sourcecode directory:
+		i.	# cd /sourcecode
+	d.	Get the source code from git:
 		i.	The first time (Clone):
-			1.	git clone https://github.com/Evolve-IT/directory-info-service.git
+			1.	# git clone https://github.com/Evolve-IT/directory-info-service.git
 		ii.	If it has already been cloned (For updates from git), do a pull:
-			1.	git pull https://github.com/Evolve-IT/directory-info-service.git  master
+			1.	# git pull https://github.com/Evolve-IT/directory-info-service.git  master
 6.	Build the project using Maven:
 	a.	go to the directory-info-service folder:
-		i.	cd /sourcecode/directory-info-service/directory-info-service
-	b.	Run: mvn clean
+		i.	# cd /sourcecode/directory-info-service/directory-info-service
+	b.	Run: # mvn clean
 		i.	This does a clean and downloads the required dependencies
-	c.	Run: mvn install
-		i.	This installs the decencies for the project, builds the project and creates the directory-info-service.jar file which contains all of the source code and references
+	c.	Run: # mvn install
+		i.	This installs the dependencies for the project, builds the project and creates the directory-info-service.jar file which contains all of the source code and references.
 7.	Build and run the docker image:
 	a.	Run: docker build -f <Dockerfile name> -t <Docker image name (has to be lowercase)> . (notice the space dot at the end)
-		i.	Thus run: docker build -f Dockerfile -t directoryinfoservice .
+		i.	Thus run: # docker build -f Dockerfile -t directoryinfoservice .
 		ii.	This builds the docker image
-	b.	Run: docker images
+	b.	Run: # docker images
 		i.	Gets a list of docker images
 		ii.	You should see the directoryinfoservice image in the list if it was successfully built
 	c.	Run: docker run -p <publish exposed port> -i -t <dockerimage>
-		i.	Thus Run: docker run -p 8080:8080 -i -t directoryinfoservice
+		i.	Thus Run: # docker run -p 8080:8080 -i -t directoryinfoservice
 		ii.	This will run the docker image and expose port 8080 on the docker image as port 8080 to the “outside world”
-	d.	Press Ctrl + P +Ctrl + Q (to allow you to type and see the input if it is still attached to the docker container)
+	d.	Press Ctrl + P + Ctrl + Q (to allow you to type and see the input if it is still attached to the docker container)
 
 
 ## Usage
