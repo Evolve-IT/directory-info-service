@@ -98,16 +98,16 @@ Follow these steps in order to call the REST service:
 3. Send a request to the directoryinfoservice:
    1. For Json Output:
       1. $ curl -X GET http://[Docker Image IP Address]:[Docker Image Port]/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=[directory]
-         * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp
+         * Example: $ curl -X GET http://172.17.0.1:8080/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp
       2. You can add > [somedirectory]/[output filename] to the end of the curl command to write the output to a file
-         * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp > /tmp/directory_info_service_output_json.txt
+         * Example: $ curl -X GET http://172.17.0.1:8080/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp > /tmp/directory_info_service_output_json.txt
       3. You should see the json returned by the rest service
       4. An object with the following structure will be returned
    2. For Xml Output:
       1. $ curl -X GET http://[Docker Image IP Address]:[Docker Image Port]/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=[directory]
-         * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp 
+         * Example: $ curl -X GET http://172.17.0.1:8080/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp 
       2. You can add > [somedirectory]/[output filename] to the end of the curl command to write the output to a file
-         * Example: $ curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp > /tmp/directory_info_service_output.xml
+         * Example: $ curl -X GET http://172.17.0.1:8080/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp > /tmp/directory_info_service_output.xml
       3. You should see the xml returned by the rest service
    3. The data returned by both methods will be in the following format
       1. DirectoryListingResult
