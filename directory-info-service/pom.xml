@@ -27,9 +27,9 @@
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
-     <groupId>com.fasterxml.jackson.dataformat</groupId>
-     <artifactId>jackson-dataformat-xml</artifactId>
-  </dependency>
+             <groupId>com.fasterxml.jackson.dataformat</groupId>
+             <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
   </dependencies>
   
   <build>

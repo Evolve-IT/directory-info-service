@@ -1,5 +1,6 @@
 package directoryinfo.models;
 
+
 public class Attribute {
 	private String Name;
 	

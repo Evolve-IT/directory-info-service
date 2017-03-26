@@ -1,8 +1,8 @@
 package directoryinfo.models;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@XmlRootElement
+@JacksonXmlRootElement(namespace="directoryListingResult")
 public class DirectoryListingResult {
 	private boolean Success;
 	private String ErrorMessage;

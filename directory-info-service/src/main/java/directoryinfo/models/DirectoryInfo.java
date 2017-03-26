@@ -2,15 +2,19 @@ package directoryinfo.models;
 
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public class DirectoryInfo {
 	
 	//Private Variables
 	private String FullPath;
 	private String Type;
+	
 	private List<Attribute> Attributes;
+	
 	private List<DirectoryInfo> Children;
 	
 	
@@ -40,17 +44,21 @@ public class DirectoryInfo {
 		Type = type.toString();
 	}
 
+	@JacksonXmlElementWrapper(localName="attributes")
+	@JacksonXmlProperty(localName="attribute")
 	public List<Attribute> getAttributes() {
 		return Attributes;
 	}
 
+	@JacksonXmlElementWrapper(localName="children")
+	@JacksonXmlProperty(localName="directoryInfo")
 	public List<DirectoryInfo> getChildren() {
 		return Children;
 	}
 	
 	
 	public void setFileSize(long fileSize) {
-		final String FILE_SIZE = "File Size";
+		final String FILE_SIZE = "FileSize";
 		addAttribute(FILE_SIZE, fileSize);
 	}
 	
