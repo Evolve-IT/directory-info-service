@@ -68,9 +68,7 @@ public class DirectoryBrowser {
 		try
 		{
 			DirectorySize = DirectorySize + 1;
-			
-			System.out.println(String.format("Node: %1s Directory: %2s.", DirectorySize, path.normalize().toString()));
-			
+					
 			directoryInfo.setFullPath(path.normalize().toString());
 			
 			//Read the attributes without following symbolic links (prevents "too many levels of symbolic links" exception)
