@@ -1,4 +1,4 @@
-# directory-info-service
+# Directory Info Service (directory-info-service)
 
 This is a spring boot REST service which has been encapsulated in a docker container.
 The REST service can be used to get a directory listing of a directory on the server where the docker container is running.
@@ -111,7 +111,7 @@ Follow these steps in order to call the REST service:
 		iii.	You should see the xml returned by the rest service
 	c.	The data returned by both methods will be in the following format:
 		i. 	DirectoryListingResult:
-			This is the header object which contains the following properties:
+			This is the header object which contains the following fields:
 				1. 	directoryInfo
 					i. This object contains all of the details related to the directory which was passed in as the directory input parameter.
 					ii. It contains the following fields:
@@ -133,25 +133,25 @@ Follow these steps in order to call the REST service:
 							** An attribute with name "ErrorMessage" will be added to a directoryInfo object's attributes if an exception occurred during the accessing
 							   of a file or directory's attributes.
 							Possible attributes:
-								i. 	
-								ii.	
-								iii.
-								iv.	
-								V.	
+								i. 	FileSize
+								ii.	LastAccessTime
+								iii.	LastModifiedTime
+								iv.	CreationTime
 
 						4.	children
 							This is a collection of objects of type directoryInfo (same as described above) which represents all of the child
 							files and directories. 
 							** This will only be populated if the current item is a directory.
 				2. 	directorySize
-					This is the size of the directory listing.
+					This is the size of the directory listing. It is an interger which represents the number of files and folders contained in the input folder.
 				3. 	success
 					This is a boolean field which will be:
 						"true" if a directory listing could be retrieved without any errors.
 						"false" if an exception occurred during the retrieval of a directory listing.
 				4. 	errorMessage
 					This will be populated with a user friendly error message if an exception occurred during the retrieval of a directory listing.
-		
+	
+	d. Example of Xml returned by the REST Service
 		<DirectoryListingResult>
 			<directoryInfo>n
 				<type>Directory</type>
@@ -231,17 +231,9 @@ Follow these steps in order to call the REST service:
 
 
 
-
-
-
-
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+N/A
 
 ## History
 
