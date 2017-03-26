@@ -5,10 +5,10 @@ The REST service can be used to get a directory listing of a directory on the se
 
 ## Installation
 
-Building and Installing on Centos/Linux:
-1. Enable wget if not enable/installed:
+Building and Installing on Centos/Linux
+1. Enable wget if not enable/installed
  a. yum install wget -y
-2. Install JDK 1.8 (This should only be done if Maven/mvn cannot run because JDK 1.8 is missing):
+2. Install JDK 1.8 (This should only be done if Maven/mvn cannot run because JDK 1.8 is missing)
  a. mkdir /opt/java && cd /opt/java
  b. For 32-bit Systems
   i. $ cd /opt/java
