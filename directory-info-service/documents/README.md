@@ -84,7 +84,38 @@ Building and Installing on Centos/Linux:
 
 ## Usage
 
-TODO: Write usage instructions
+Follow these steps in order to call the REST service:
+
+1.	Get the ip address of the docker container:
+	a.	Run: # docker ps
+		i.	This will show a list of docker containers
+		ii.	Use the CONTAINER_ID which is displayed of the directoryinfoservice to get the ip address below.
+	b.	# docker inspect --format '{{ .NetworkSettings.IPAddress }}' CONTAINER_ID
+		i.	This should display the docker container’s IP Address
+		ii.	If this doesn’t work, use one of the commands on this page: http://networkstatic.net/10-examples-of-how-to-get-docker-container-ip-address/
+2.	If Curl is not enabled, enable it:
+	a.	# yum install curl
+3.	Send a request to the directoryinfoservice:
+	a.	For Json Output:
+		i.	# curl -X GET http://<Docker Image IP Address>:<Docker Image Port>/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=<directory>
+			Example: # curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp
+		ii.	You can add > <somedirectory>/<output filename> to the end of the curl command to write the output to a file
+			Example: # curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoJson/?directory=/tmp > /tmp/directory_info_service_output_json.txt
+		iii.	You should see the json returned by the rest service
+		iv.	An object with the following structure will be returned
+	b.	For Xml Output:
+		i.	# curl -X GET http://<Docker Image IP Address>:<Docker Image Port>/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=<directory>
+			Example: # curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp 
+		ii.	You can add > <somedirectory>/<output filename> to the end of the curl command to write the output to a file
+			Example: # curl -X GET http://172.17.0.1:80/svc/v1/directoryinfo/getDirectoryInfoXml/?directory=/tmp > /tmp/directory_info_service_output.xml
+		iii.	You should see the xml returned by the rest service
+	c.	The data returned by both methods will be in the following format:
+
+
+
+
+
+
 
 ## Contributing
 
